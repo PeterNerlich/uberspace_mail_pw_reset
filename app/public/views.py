@@ -132,7 +132,7 @@ def req():
 
         # deposit mail for user if mailbox exists, but don't tell
         send_token_mail(token.mailbox, token.token)
-        print('TODO: deposit to {}: {}{}?t={}'.format(token.mailbox, os.getenv('URL_BASE'), url_for('public.index'), urllib.parse.quote(token.token)))
+        print('TODO: deposit to {}: {}'.format(token.mailbox, url_for('public.index', t=token.token, _external=True)))
 
     return render_template("/public/requested.html")
 
@@ -159,7 +159,7 @@ def reset():
                 password = ensure_ascii(generate_pw())
                 # change mailbox pw
                 print('TODO: uberspace mail user password -p "{}" "{}"'.format(password, token_query.mailbox))
-                proc = subprocess.run(["uberspace", "mail", "user", "password", "-p", password, token_query.mailbox], stdout=subprocess.PIPE, sterr=subprocess.PIPE)
+                proc = subprocess.run(["uberspace", "mail", "user", "password", "-p", password, token_query.mailbox], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
                 if proc.returncode == 0:
                     break
