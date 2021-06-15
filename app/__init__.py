@@ -16,6 +16,7 @@ def create_app():
     app.secret_key = os.getenv('SECRET_KEY')
     app.url_map.strict_slashes = False
 
+    app.config['APPLICATION_ROOT'] = os.getenv('APP_ROOT')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
 
