@@ -78,7 +78,8 @@ def send_token_mail(box, token):
         msg['From'] = os.getenv('MAIL_SENDER')
         msg['To'] = '{}@{}'.format(box, os.getenv('MAIL_RECEIVER_DOMAIN'))
         msg['Subject'] = _l('Password reset token')
-        msg.set_payload("test test: {}".format(url))
+        msg.set_payload(render_template("/mail_reset_token.j2",
+            url=url))
 
         mb.add(msg)
         mb.flush()
