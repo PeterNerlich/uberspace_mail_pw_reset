@@ -59,7 +59,8 @@ def tmp_pass(length=128):
     return u''.join(rand_gen.choice(chars) for dummy in range(length))
 
 def send_token_mail(box, token):
-    url = '{}{}'.format(os.getenv('URL_BASE'), url_for('public.index', t=token))
+    #url = '{}{}'.format(os.getenv('URL_BASE'), url_for('public.index', t=token))
+    url = url_for('public.index', t=token, _external=True)
 
     mb = mailbox.Maildir("users/{}".format(box), create=False)
     mb.lock()
