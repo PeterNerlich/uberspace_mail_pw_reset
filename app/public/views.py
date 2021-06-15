@@ -6,7 +6,7 @@ from ..models import Token
 import logging
 
 from xkcdpass import xkcd_password as xp
-import random, os, subprocess.run
+import random, os, subprocess
 import datetime, time
 import urllib.parse, re
 from string import ascii_letters, digits
@@ -153,7 +153,7 @@ def reset():
                 password = ensure_ascii(generate_pw())
                 # change mailbox pw
                 print('TODO: uberspace mail user password -p "{}" "{}"'.format(password, token_query.mailbox))
-                proc = subprocess.run(["uberspace", "mail", "user", "password", "-p", password, token_query.mailbox], capture_output=True)
+                proc = subprocess.run(["uberspace", "mail", "user", "password", "-p", password, token_query.mailbox], stdout=subprocess.PIPE, sterr=subprocess.PIPE)
 
                 if proc.returncode == 0:
                     break
