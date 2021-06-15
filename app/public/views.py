@@ -7,7 +7,7 @@ import logging
 
 from xkcdpass import xkcd_password as xp
 import random, os, subprocess
-import datetime
+import datetime, time
 import urllib.parse, re
 from string import ascii_letters, digits
 import mailbox
@@ -73,7 +73,7 @@ def send_token_mail(box, token):
     try:
         msg = mailbox.MaildirMessage()
         msg.set_subdir('new')
-        msg.set_date(datetime.datetime.utcnow())
+        msg.set_date(time.time())
         msg.add_flag('F')   # mark as important
         msg['From'] = os.getenv('MAIL_SENDER')
         msg['To'] = '{}@{}'.format(box, os.getenv('MAIL_RECEIVER_DOMAIN'))
