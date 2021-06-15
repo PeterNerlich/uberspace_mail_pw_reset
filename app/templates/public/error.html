@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+
+        <title>{{ _("Error resetting password") }}</title>
+    </head>
+    <body>
+        <div class="dialog-box content">
+            <h2>{{ _("Error resetting password") }}</h2>
+
+            {% for message in get_flashed_messages() %}
+            <div class="float-box">
+              <div class="notification-box">
+                <p>{{ message }}</p>
+              </div>
+            </div>
+            {% endfor %}
+
+            <div>
+                <h1>{{ _("Uh oh!") }}</p>
+                <p>{{ _("There was a problem while generating a new password. Please contact an admin.") }}</p>
+                <p>{{ _("Error message:") }} <code>{{ stderr }}</code></p>
+            </div>
+
+            <div class="spacer"></div>
+
+        </div>
+    </body>
+</html>

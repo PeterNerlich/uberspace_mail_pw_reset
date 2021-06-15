@@ -6,8 +6,11 @@ from ..models import Token
 import logging
 
 from xkcdpass import xkcd_password as xp
-import random, datetime, os, urllib.parse, re
+import random, os, subprocess.run
+import datetime, time
+import urllib.parse, re
 from string import ascii_letters, digits
+import mailbox
 
 #
 # Locale Initialization
@@ -55,6 +58,32 @@ def ensure_ascii(pw):
 def tmp_pass(length=128):
     return u''.join(rand_gen.choice(chars) for dummy in range(length))
 
+def send_token_mail(box, token):
+    url = '{}{}'.format(os.getenv('URL_BASE'), url_for('public.index', t=token))
+
+    mb = mailbox.Maildir("users/{}".format(box), create=False)
+    mb.lock()
+
+    try:
+        msg = mailbox.MaildirMessage()
+        msg.set_subdir('new')
+        msg.set_date(time.time())
+        msg.add_flag('F')   # mark as important
+        msg['From'] = os.getenv('MAIL_SENDER')
+        msg['To'] = '{}@{}'.format(box, os.getenv('MAIL_RECEIVER_DOMAIN'))
+        msg['Subject'] = _l('Password reset token')
+        msg.set_payload("test test: {}".format(url))
+
+        mb.add(msg)
+        mb.flush()
+
+        return True
+    except Exception as e:
+        print(e)
+        return False
+    finally:
+        mb.unlock()
+
 #
 # Routes
 #
@@ -96,7 +125,7 @@ def req():
         db.session.commit()
 
         # deposit mail for user if mailbox exists, but don't tell
-        # TODO
+        send_token_mail(token.mailbox, token.token)
         print('TODO: deposit to {}: {}{}?t={}'.format(token.mailbox, os.getenv('URL_BASE'), url_for('public.index'), urllib.parse.quote(token.token)))
 
     return render_template("/public/requested.html")
@@ -119,16 +148,25 @@ def reset():
             token_query.successful = False
             db.session.commit()
 
-            # generate new pw
-            password = ensure_ascii(generate_pw())
-            # change mailbox pw
-            print('TODO: uberspace mail user password -p "{}" "{}"'.format(password, token_query.mailbox))
+            for i in range(2):
+                # generate new pw
+                password = ensure_ascii(generate_pw())
+                # change mailbox pw
+                print('TODO: uberspace mail user password -p "{}" "{}"'.format(password, token_query.mailbox))
+                proc = subprocess.run(["uberspace", "mail", "user", "password", "-p", password, token_query.mailbox], capture_output=True)
 
-            token_query.successful = True
-            db.session.commit()
+                if proc.returncode == 0:
+                    break
 
-            return render_template("/public/success.html",
-                password=password)
+            if proc.returncode == 0:
+                token_query.successful = True
+                db.session.commit()
+
+                return render_template("/public/success.html",
+                    password=password)
+            else:
+                return render_template("/public/error.html",
+                    stderr=proc.stderr)
     else:
         flash(_l("Invalid request: No token. Please try again."))
 
