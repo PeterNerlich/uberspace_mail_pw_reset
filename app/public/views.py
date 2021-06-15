@@ -62,7 +62,12 @@ def send_token_mail(box, token):
     #url = '{}{}'.format(os.getenv('URL_BASE'), url_for('public.index', t=token))
     url = url_for('public.index', t=token, _external=True)
 
-    mb = mailbox.Maildir("users/{}".format(box), create=False)
+    try:
+        mb = mailbox.Maildir("users/{}".format(box), create=False)
+    except mailbox.NoSuchMailboxError as e:
+        print(e)
+        return False
+
     mb.lock()
 
     try:
