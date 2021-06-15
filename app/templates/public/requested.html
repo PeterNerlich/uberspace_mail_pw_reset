@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+
+        <title>{{ _("Email sent!") }}</title>
+    </head>
+    <body>
+        <div class="dialog-box content">
+            <h2>{{ _("Email sent!") }}</h2>
+
+            {% for message in get_flashed_messages() %}
+            <div class="float-box">
+              <div class="notification-box">
+                <p>{{ message }}</p>
+              </div>
+            </div>
+            {% endfor %}
+
+            <div>
+                <p><b><i>TODO:</i></b> Helpful text here</p>
+            </div>
+
+            <div class="spacer"></div>
+
+        </div>
+    </body>
+</html>

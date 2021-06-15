@@ -1,0 +1,6 @@
+Flask
+flask_sqlalchemy
+flask_babel
+python-dotenv
+uWSGI
+xkcdpass

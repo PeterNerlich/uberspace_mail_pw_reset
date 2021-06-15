@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+
+        <title>{{ _("Password reset!") }}</title>
+    </head>
+    <body>
+        <div class="dialog-box content">
+            <h2>{{ _("Password reset!") }}</h2>
+
+            {% for message in get_flashed_messages() %}
+            <div class="float-box">
+              <div class="notification-box">
+                <p>{{ message }}</p>
+              </div>
+            </div>
+            {% endfor %}
+
+            <div>
+                <p>{{ _("Success! The mailbox password was reset.") }}</p>
+                <p>{{ _("The new password is:") }}</p>
+                <p class="password">{{ password }}</p>
+                <p>{{ _("This is the only time this password will be shown. Please write it down or save it in your password manager.") }}</p>
+                <p>{{ _("If you loose your password or think others might have gained access to it, please reset it again. If you loose access to the mailbox completely, please contact an admin.") }}</p>
+            </div>
+
+            <div class="spacer"></div>
+
+        </div>
+    </body>
+</html>

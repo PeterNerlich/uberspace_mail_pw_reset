@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+
+        <title>{{ _("Reset mailbox password") }}</title>
+    </head>
+    <body>
+        <div class="dialog-box content">
+            <h2>{{ _("Reset mailbox password") }}</h2>
+
+            {% for message in get_flashed_messages() %}
+            <div class="float-box">
+              <div class="notification-box">
+                <p>{{ message }}</p>
+              </div>
+            </div>
+            {% endfor %}
+
+            <div>
+                <p><b><i>TODO:</i></b> Helpful text here</p>
+            </div>
+
+            <div class="divider horizontal"></div>
+
+            {% if token is none %}
+            <a class="button" href="{{ url_for('public.index') }}">{{ _("Request a new token") }}</a>
+            {% else %}
+            <form method="POST" action="{{ url_for('public.reset') }}">
+                <div class="box-padding left right bottom">
+                    <p class="input-descriptor">{{ _("Mailbox") }}</p>
+                    <input type="text" name="mailbox" style="width: initial;" disabled value="{{ token.mailbox }}@ ..."/>
+                    <input type="hidden" name="tmp_pass" value="{{ token.tmp_pass }}"/>
+                </div>
+
+                <div class="divider horizontal"></div>
+
+                <div class="button warning">
+                    <input name="reset_btn" type="submit" value="{{ _('Reset password') }}"/>
+                </div>
+            </form>
+            {% endif %}
+
+            <div class="spacer"></div>
+
+        </div>
+    </body>
+</html>

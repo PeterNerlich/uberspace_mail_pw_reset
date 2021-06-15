@@ -1,0 +1,433 @@
+body {
+    background-color: #292929 !important;
+    background-repeat: repeat;
+    background-size: 120px;
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+}
+
+.float-box {
+    position: aboslute;
+    width: 100%;
+}
+
+.notification-box {
+    background: #2f71a3;
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dir {
+    font-size: 40px;
+    padding: 6px 10px 8px 10px;
+    background-color: #fff;
+    color: #525252;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.dir.layer {
+    cursor: default;
+}
+
+.dir.name {
+    text-decoration: underline;
+    border: solid 2px #fff;
+}
+
+.dir p {
+    margin: 0;
+    margin-bottom: 5px;
+    line-height: 40px;
+}
+
+.dir.name:hover {
+    border: dashed 2px #575757;
+    cursor: pointer;
+}
+
+.dir.name:active {
+    border: solid 2px #575757;
+    background-color: #8ebadc;
+}
+
+.logout {
+    position: absolute;
+    top: 45px;
+    right: 70px;
+    content: url("../icons/logout.svg");
+    width: 24px;
+    height: 24px;
+}
+
+.dialog-box {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+.dialog-box.login {
+    width: 400px;
+    right: 50%;
+    bottom: 50%;
+    transform: translate(50%,50%);
+    position: absolute;
+}
+
+.dialog-box.content {
+    padding-left: 50px;
+    padding-right: 50px;
+    max-width: 1400px;
+    width: 75%;
+    right: 50%;
+    bottom: 50%;
+    transform: translate(50%,50%);
+    position: absolute;
+    height: 100%;
+    border-radius: 0;
+    overflow-y: auto;
+}
+
+.logo-bar {
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 15px;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: #575757;
+    font-size: 80px;
+    margin: 0;
+    padding: 0;
+    background-color: #e6e6e6;
+}
+
+nav li.active a {
+    text-decoration: underline;
+}
+
+nav a:hover {
+    background-color: #575757;
+    color: #fff;
+}
+
+.divider {
+    background-color: #e2e1e1;
+}
+
+.divider.horizontal {
+    width: 100%;
+    height: 2px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.box-padding.all {
+    padding: 20px;
+}
+
+.box-padding.left {
+    padding-left: 20px;
+}
+
+.box-padding.right {
+    padding-right: 20px;
+}
+
+.box-padding.bottom {
+    padding-bottom: 20px;
+}
+
+input[type=text],
+input[type=password] {
+  all: unset;
+  background-color: #fff;
+  border: solid 1px #e2e8f0;
+  height: 38px;
+  border-radius: 0px;
+  width: 100%;
+  justify-content: center;
+  padding: 5px 10px 5px 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 15px;
+  text-align: left;
+}
+
+input[type=text]:focus,
+input[type=password]:focus {
+  border: solid 1px #2f71a3;
+  transition: width 2s;
+}
+
+input[type=submit], .button:not(div) {
+  all: unset;
+  font-size: 17px;
+  text-align: center;
+  border-radius: 0 0 5px 5px;
+  width: 100%;
+  height: 50px;
+  border-top: solid 1px #edf2f7;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+  background-color: #fff;
+}
+
+.button:not(div) {
+    display: block !important;
+    padding: 1px 6px;
+}
+
+.dialog-box.content .warning input[type=submit], .button:not(div).warning {
+    background-color: rgb(180, 48, 48);
+    color: #fff;
+}
+
+input[type=submit]:hover, button:hover {
+  background-color: #ececec;
+  cursor: pointer;
+  transition: width 2s;
+}
+
+p.input-descriptor {
+    color: #525252;
+    margin: 20px 0 10px 0;
+}
+
+@media screen and (max-width: 500px) {
+    .dialog-box.login,
+    .dialog-box.content {
+        width: 100%;
+        border-radius: 0px;
+    }
+
+    .dialog-box.content {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .button.left {
+        left: 22px !important;
+    }
+    
+    .button.right {
+        right: 30px !important;
+    }
+}
+
+.add a {
+    text-decoration: none;
+}
+
+.add .content {
+    font-size: 105px;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    color: #fff;
+}
+
+@media screen and (max-width: 800px) {
+    .qritzeljagd-font {
+        height: 35px;
+    }
+
+    .dir {
+        font-size: 20px;
+        padding: 5px;
+    }
+
+    nav a {
+        font-size: 50px;
+    }
+
+    .logout {
+        display: none;
+    }
+
+    .add .content {
+        font-size: 40px;
+    }
+}
+
+.button.left {
+    left: 50px;
+    position: absolute;
+}
+
+.button.right {
+    right: 58px;
+    position: absolute;
+}
+
+.dialog-box.content input[type=submit], .dialog-box.content .button:not(div) {
+    all: unset;
+    font-size: 17px;
+    text-align: center;
+    /*width: 100px;*/
+    height: 50px;
+    padding: 0 10px;
+    background-color: #e6e6e6;
+    border: solid 2px #fff;
+    color: #575757;
+  }
+  
+.dialog-box.content input[type=submit]:hover, .dialog-box.content .button:not(div):hover {
+    border: dashed 2px #575757;
+    cursor: pointer;
+}
+
+.dialog-box.content input[type=submit]:active, .dialog-box.content .button:not(div):active {
+    background-color: #8ebadc;
+    border: solid 2px #575757;
+}
+
+.listbox {
+    width: 100%;
+    border: solid 1px #e2e8f0;
+}
+
+.listbox .item {
+    width: 100%;
+    height: 38px;
+}
+
+.listbox .item:not(:last-child) {
+    border-bottom: solid 1px #e2e8f0;
+}
+
+.item input[type=submit] {
+    height: 38px !important;
+    width: 100% !important;
+    border: none !important;
+    font-size: 20px !important;
+}
+
+.item input[type=submit]:hover {
+    background-color: #575757;
+    color: #fff;
+}
+
+.item input[type=submit]:active {
+    border: none !important;
+}
+
+.data .id {
+    align-items: flex-start;
+    width: 20px;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 50%;
+}
+
+.data .name {
+    align-items: flex-end;
+}
+
+.buttons a > div {
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 2px;
+    background-color: #ececec;
+}
+
+.buttons a > div:hover {
+    background-color: #575757;
+    filter: invert(1);
+}
+
+.buttons a > div > img {
+    filter: invert(0);
+}
+
+.buttons .apply input[type=submit], .button:not(div).apply,
+.buttons .close input[type=submit], .button:not(div).close {
+    background: url("../icons/apply.svg") no-repeat !important;
+    background-position: center !important;
+    background-size: 18px 18px !important;
+    background-color: #ececec !important;
+    width: 36px !important;
+    height: 36px !important;
+    margin-left: 2px !important;
+}
+
+.buttons .close input[type=submit], .button:not(div).close {
+    background: url("../icons/close.svg") no-repeat !important;
+    background-position: center !important;
+    background-size: 18px 18px !important;
+    background-color: #ececec !important;
+    width: 36px !important;
+    height: 36px !important;
+    margin-left: 2px !important;
+}
+
+.buttons .apply input[type=submit]:hover, .button:not(div).apply:hover,
+.buttons .close input[type=submit]:hover, .button:not(div).close:hover {
+    background-color: #575757;
+    filter: invert(1);
+}
+
+.buttons .delete {
+    background-color: rgb(180, 48, 48);
+}
+
+.buttons div > img {
+    width: 16px;
+    height: 16px;
+}
+
+.buttons .delete > img {
+    filter: invert(1);
+}
+
+.info h1 {
+    text-align: center;
+    font-size: 40px;
+}
+
+.info h2,
+h2 {
+    text-align: center;
+    font-size: 30px;
+}
+
+.spacer {
+    width: 100%;
+    height: 100px;
+}
+
+
+p.password {
+    font-weight: bolder;
+    font-size: 1.5em;
+    line-height: 1.5;
+    color: #480;
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 10px 20px;
+    word-break: break-all;
+}
