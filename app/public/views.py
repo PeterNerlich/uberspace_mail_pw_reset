@@ -7,7 +7,7 @@ import logging
 
 from xkcdpass import xkcd_password as xp
 import random, os, subprocess
-import datetime, time
+import datetime
 import urllib.parse, re
 from string import ascii_letters, digits
 import mailbox
@@ -73,7 +73,7 @@ def send_token_mail(box, token):
     try:
         msg = mailbox.MaildirMessage()
         msg.set_subdir('new')
-        msg.set_date(time.time())
+        msg.set_date(datetime.datetime.utcnow())
         msg.add_flag('F')   # mark as important
         msg['From'] = os.getenv('MAIL_SENDER')
         msg['To'] = '{}@{}'.format(box, os.getenv('MAIL_RECEIVER_DOMAIN'))
@@ -131,8 +131,10 @@ def req():
         db.session.commit()
 
         # deposit mail for user if mailbox exists, but don't tell
-        send_token_mail(token.mailbox, token.token)
-        print('TODO: deposit to {}: {}'.format(token.mailbox, url_for('public.index', t=token.token, _external=True)))
+        if send_token_mail(token.mailbox, token.token):
+            print('Sent token mail to {}'.format(token.mailbox))
+        else:
+            print('Failed to send token mail to {}'.format(token.mailbox))
 
     return render_template("/public/requested.html")
 
@@ -158,7 +160,7 @@ def reset():
                 # generate new pw
                 password = ensure_ascii(generate_pw())
                 # change mailbox pw
-                print('TODO: uberspace mail user password -p "{}" "{}"'.format(password, token_query.mailbox))
+                print('### SETTING NEW PASSWORD FOR {}"'.format(token_query.mailbox))
                 proc = subprocess.run(["uberspace", "mail", "user", "password", "-p", password, token_query.mailbox], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
                 if proc.returncode == 0:
