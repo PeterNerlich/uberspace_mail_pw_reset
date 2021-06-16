@@ -93,7 +93,7 @@ def index():
 
 @public.route("/request", methods=["GET","POST"])
 def req():
-    if 'request_btn' in request.form:
+    if 'request_btn' in request.form and 'mailbox' in request.form and request.form['mailbox'] != '':
         # create token, set start ts
         token = Token(token=ensure_ascii(generate_pw(random_delimiters=False, numwords=4)), mailbox=request.form['mailbox'])
         db.session.add(token)
