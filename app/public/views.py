@@ -10,7 +10,8 @@ import random, os, subprocess
 import datetime, time
 import urllib.parse, re
 from string import ascii_letters, digits
-import mailbox
+
+from do_the_mail_thing import send_token_mail
 
 #
 # Locale Initialization
@@ -58,39 +59,6 @@ def ensure_ascii(pw):
 def tmp_pass(length=128):
     return u''.join(rand_gen.choice(chars) for dummy in range(length))
 
-def send_token_mail(box, token):
-    #url = '{}{}'.format(os.getenv('URL_BASE'), url_for('public.index', t=token))
-    url = url_for('public.index', t=token, _external=True)
-
-    try:
-        mb = mailbox.Maildir("~/users/{}".format(box), create=False)
-    except mailbox.NoSuchMailboxError as e:
-        print(e)
-        return False
-
-    mb.lock()
-
-    try:
-        msg = mailbox.MaildirMessage()
-        msg.set_subdir('new')
-        msg.set_date(time.time())
-        msg.add_flag('F')   # mark as important
-        msg['From'] = os.getenv('MAIL_SENDER')
-        msg['To'] = '{}@{}'.format(box, os.getenv('MAIL_RECEIVER_DOMAIN'))
-        msg['Subject'] = _l('Password reset token')
-        msg.set_payload(render_template("/mail_reset_token.j2",
-            url=url))
-
-        mb.add(msg)
-        mb.flush()
-
-        return True
-    except Exception as e:
-        print(e)
-        return False
-    finally:
-        mb.unlock()
-
 #
 # Routes
 #
@@ -132,7 +100,12 @@ def req():
         db.session.commit()
 
         # deposit mail for user if mailbox exists, but don't tell
-        if send_token_mail(token.mailbox, token.token):
+        if send_token_mail(token.mailbox,
+                f=os.getenv('MAIL_SENDER'),
+                t='{}@{}'.format(token.mailbox, os.getenv('MAIL_RECEIVER_DOMAIN')),
+                s=_l('Password reset token'),
+                p=render_template("/mail_reset_token.j2",
+                    url=url_for('public.index', t=token.token, _external=True))):
             print('Sent token mail to {}'.format(token.mailbox))
         else:
             print('Failed to send token mail to {}'.format(token.mailbox))
