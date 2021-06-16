@@ -10,13 +10,13 @@
         <div class="dialog-box content">
             <h2>{{ _("Password reset!") }}</h2>
 
-            {% for message in get_flashed_messages() %}
+            {% for message in get_flashed_messages() -%}
             <div class="float-box">
               <div class="notification-box">
                 <p>{{ message }}</p>
               </div>
             </div>
-            {% endfor %}
+            {%- endfor %}
 
             <div>
                 <p>{{ _("Success! The mailbox password was reset.") }}</p>

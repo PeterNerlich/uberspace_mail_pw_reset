@@ -10,16 +10,17 @@
         <div class="dialog-box content">
             <h2>{{ _("Email sent!") }}</h2>
 
-            {% for message in get_flashed_messages() %}
+            {% for message in get_flashed_messages() -%}
             <div class="float-box">
               <div class="notification-box">
                 <p>{{ message }}</p>
               </div>
             </div>
-            {% endfor %}
+            {%- endfor %}
 
             <div>
-                <p><b><i>TODO:</i></b> Helpful text here</p>
+                <p>{{ _("If that mailbox exists, we have sent a token link to it. Use that to reset the password.") }}</p>
+                <p>{{ _("If you lost access to your mailbox, contact an admin.") }}</p>
             </div>
 
             <div class="spacer"></div>

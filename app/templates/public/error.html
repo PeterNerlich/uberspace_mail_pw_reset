@@ -10,16 +10,16 @@
         <div class="dialog-box content">
             <h2>{{ _("Error resetting password") }}</h2>
 
-            {% for message in get_flashed_messages() %}
+            {% for message in get_flashed_messages() -%}
             <div class="float-box">
               <div class="notification-box">
                 <p>{{ message }}</p>
               </div>
             </div>
-            {% endfor %}
+            {%- endfor %}
 
             <div>
-                <h1>{{ _("Uh oh!") }}</p>
+                <h1>{{ _("Uh oh!") }}</h1>
                 <p>{{ _("There was a problem while generating a new password. Please contact an admin.") }}</p>
                 <p>{{ _("Error message:") }} <code>{{ stderr }}</code></p>
             </div>
