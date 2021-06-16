@@ -36,6 +36,24 @@ def send_token_mail_real(box, f, t, s, p):
         mb.unlock()
 
 
+def send_genuine_mail(f: str, t: list, s: str, p: str, tmp_pass=None):
+    import smtplib, os
+    from email.message import Message
+
+    msg = Message()
+    msg['From'] = f
+    msg['To'] = t
+    msg['Subject'] = s
+    msg.set_payload(p)
+
+    with smtplib.SMTP(host='localhost', port=587) as smtp:
+        #smtp.set_debuglevel(1)
+        smtp.starttls()
+        smtp.login(f, tmp_pass)
+        smtp.sendmail(f, t, str(msg))
+        smtp.quit()
+
+
 if __name__ == "__main__":
     import sys
     send_token_mail_real(*sys.argv[1:])

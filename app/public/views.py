@@ -5,13 +5,12 @@ from .. import babel, db
 from ..models import Token
 import logging
 
-from xkcdpass import xkcd_password as xp
-import random, os, subprocess
+import os, subprocess
 import datetime, time
-import urllib.parse, re
-from string import ascii_letters, digits
+import urllib.parse
 
-from do_the_mail_thing import send_token_mail
+from do_the_pw_thing import generate_pw, ensure_ascii, tmp_pass
+from do_the_mail_thing import send_token_mail, send_genuine_mail
 
 #
 # Locale Initialization
@@ -24,40 +23,6 @@ def get_locale():
 #
 # Static Functions
 #
-
-special_chars = ".,:-_#+*~=?!$%&/<>"
-chars = tuple(set(ascii_letters + digits + special_chars))
-rand_gen = random.SystemRandom()
-
-def generate_pw(wordfile="ger-anlx,eff-short", random_delimiters=True, numwords=6):
-    wordfile = wordfile or xp.locate_wordfile()
-    mywords = xp.generate_wordlist(wordfile=wordfile)
-
-    dl = '-'
-    if random_delimiters:
-        dl = rand_gen.choice(special_chars)
-
-    return xp.generate_xkcdpassword(mywords, delimiter=dl, numwords=numwords)
-
-def ensure_ascii(pw):
-    replacements = [
-        ('ä', 'ae'),
-        ('ö', 'oe'),
-        ('ü', 'ue'),
-        ('Ä', 'AE'),
-        ('Ö', 'OE'),
-        ('U', 'UE'),
-        ('ß', 'ss'),
-        ('ẞ', 'SS')
-    ]
-
-    for i in replacements:
-        pw = pw.replace(i[0], i[1])
-
-    return re.sub('[^{}]+'.format(re.escape(''.join(chars))), '_', pw)
-
-def tmp_pass(length=128):
-    return u''.join(rand_gen.choice(chars) for dummy in range(length))
 
 #
 # Routes
@@ -116,6 +81,26 @@ def req():
         flash(_l("Invalid request: Please try again."))
         return render_template("/public/index.html")
 
+def initial_use_mail(mailbox: str, receiver: str):
+    token = Token(token=ensure_ascii(generate_pw(random_delimiters=False, numwords=6)), mailbox=mailbox, initial_use=True)
+    db.session.add(token)
+    db.session.commit()
+
+    def fake_tr(s, *args, **kwargs):
+        return s
+
+    tmp_pass = ensure_ascii(generate_pw(numwords=8))
+    print('### SETTING NEW TMP PASS FOR {}'.format(mailbox))
+    proc = subprocess.run(["uberspace", "mail", "user", "password", "-p", tmp_pass, mailbox], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+    send_genuine_mail(
+        f='{}@{}'.format(mailbox, os.getenv('MAIL_RECEIVER_DOMAIN')),
+        t=receiver.split(','),
+        s='[{}] {}'.format(mailbox, 'Password reset token'),
+        p=render_template("mail_initial_use.j2",
+            url=url_for('public.index', t=token.token, _external=True),
+            l=fake_tr),
+        tmp_pass=tmp_pass)
 
 
 @public.route("/reset", methods=["GET","POST"])

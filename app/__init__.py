@@ -33,3 +33,27 @@ def create_app():
     app.register_blueprint(public_blueprint)
 
     return app
+
+
+def create_app_context_only():
+    app = Flask(__name__)
+
+    app.config['PREFERRED_URL_SCHEME'] = os.getenv('PREFERRED_URL_SCHEME')
+    app.config['SERVER_NAME'] = os.getenv('SERVER_NAME')
+    app.config['APPLICATION_ROOT'] = os.getenv('APP_ROOT')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
+
+    #app.config['EXPLAIN_TEMPLATE_LOADING'] = True
+
+    #babel.init_app(app)
+
+    db.init_app(app)
+    with app.app_context():
+        db.create_all()
+        db.session.commit()
+
+    from .public import public as public_blueprint
+    app.register_blueprint(public_blueprint)
+
+    return app
