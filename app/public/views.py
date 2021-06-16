@@ -159,3 +159,8 @@ def reset():
         flash(_l("Invalid request: No token. Please try again."))
 
     return render_template("/public/index.html")
+
+@public.route("/access", methods=["GET","POST"])
+def access():
+    return render_template("/public/access.html",
+        hostname=os.getenv('MAIL_HOSTNAME'))

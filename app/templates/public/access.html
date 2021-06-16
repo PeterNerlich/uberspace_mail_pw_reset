@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+
+        <title>{{ _("Accessing your mailbox") }}</title>
+    </head>
+    <body>
+        <div class="dialog-box content">
+            <h2>{{ _("Accessing your mailbox") }}</h2>
+
+            {% for message in get_flashed_messages() -%}
+            <div class="float-box">
+              <div class="notification-box">
+                <p>{{ message }}</p>
+              </div>
+            </div>
+            {%- endfor %}
+
+            <div>
+                <h2>{{ _("Webinterface") }}</h2>
+                <p>{{ _("The easiest way to access your mailbox is via the webinterface at webmail.uberspace.de.") }}</p>
+                <a class="button" href="https://webmail.uberspace.de/" target="_blank">{{ _("Go to webmail.uberspace.de") }}</a>
+                <ul>
+                    <li>{{ _("Login with your email address and password.") }}</li>
+                    <li>{{ _("If you don't have access and don't know your password, contact an admin.") }}</li>
+                </ul>
+
+                <h2>{{ _("Client") }}</h2>
+                <p>{{ _("You can also access your mailbox with your local mail program.") }}</p>
+
+                <h3>{{ _("IMAP") }}</h3>
+                <p>{{ _("IMAP is a mail fetching protocol doesn't delete messages from the server so you can use multiple devices to check your mailbox, with new messages staying visible to all devices.") }}</p>
+                <p>{{ _("In your mail software, ensure these settings for IMAP:") }}</p>
+                <ul>
+                    <li>{{ _("Server:") }} <code>{{ hostname }}</code></li>
+                    <li>{{ _("Port:") }} <code>993</code></li>
+                    <li>{{ _("SSL/TLS Encryption:") }} {{ _("Enabled, but not STARTTLS") }}</li>
+                    <li>{{ _("Username:") }} {{ _("Your email address, including the domain") }}</li>
+                    <li>{{ _("Password:") }} {{ _("Your password for the email address") }}</li>
+                </ul>
+
+                <h3>{{ _("POP") }}</h3>
+                <p>{{ _("POP is a mail fetching protocol that deletes messages from the server after downloading. It is recommended to use IMAP instead.") }}</p>
+                <p>{{ _("In your mail software, ensure these settings for POP:") }}</p>
+                <ul>
+                    <li>{{ _("Server:") }} <code>{{ hostname }}</code></li>
+                    <li>{{ _("Port:") }} <code>995</code></li>
+                    <li>{{ _("SSL/TLS Encryption:") }} {{ _("Enabled, but not STARTTLS") }}</li>
+                    <li>{{ _("Username:") }} {{ _("Your email address, including the domain") }}</li>
+                    <li>{{ _("Password:") }} {{ _("Your password for the email address") }}</li>
+                </ul>
+
+                <h3>{{ _("SMTP") }}</h3>
+                <p>{{ _("SMTP is a mail protocol required for sending mail from your mailbox.") }}</p>
+                <p>{{ _("In your mail software, ensure these settings for IMAP:") }}</p>
+                <ul>
+                    <li>{{ _("Server:") }} <code>{{ hostname }}</code></li>
+                    <li>{{ _("Port:") }} <code>587</code></li>
+                    <li>{{ _("SSL/TLS Encryption:") }} <code>STARTTLS</code></li>
+                    <li>{{ _("Username:") }} {{ _("Your email address, including the domain") }}</li>
+                    <li>{{ _("Password:") }} {{ _("Your password for the email address") }}</li>
+                </ul>
+            </div>
+
+            <div class="divider horizontal"></div>
+
+            <p>{{ _("If you encounter any difficulties, please contact an admin.") }}</p>
+            <a class="button" href="{{ url_for('public.index') }}">{{ _("Back to resetting your mailbox password") }}</a>
+
+            <div class="spacer"></div>
+
+        </div>
+    </body>
+</html>

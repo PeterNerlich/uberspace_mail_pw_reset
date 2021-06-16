@@ -26,6 +26,7 @@
                     <li>{{ _('On that page, click "{}" and a new password will be generated.').format(_("Reset password")) }} {{ _("This takes a few seconds, please wait.") }}</li>
                     <li>{{ _("The final page will show you the new password. Please take note of it immediately, as it will not be shown again.") }}</li>
                 </ol>
+                <a class="button" href="{{ url_for('public.access') }}">{{ _("How to access your mailbox") }}</a>
                 <p>{{ _("If you lost access to your mailbox, contact an admin.") }}</p>
             </div>
 
