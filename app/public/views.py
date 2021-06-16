@@ -37,7 +37,7 @@ def generate_pw(wordfile="ger-anlx,eff-short", random_delimiters=True, numwords=
     if random_delimiters:
         dl = rand_gen.choice(special_chars)
 
-    return xp.generate_xkcdpassword(mywords, delimiter=dl)
+    return xp.generate_xkcdpassword(mywords, delimiter=dl, numwords=numwords)
 
 def ensure_ascii(pw):
     replacements = [
@@ -63,7 +63,7 @@ def tmp_pass(length=128):
 # Routes
 #
 
-@public.route("/", methods=["GET"])
+@public.route("/", methods=["GET","POST"])
 def index():
     token = request.args.get('t')
 
@@ -91,7 +91,7 @@ def index():
         return render_template("/public/reset.html",
             token=None)
 
-@public.route("/request", methods=["POST"])
+@public.route("/request", methods=["GET","POST"])
 def req():
     if 'request_btn' in request.form:
         # create token, set start ts
@@ -110,9 +110,15 @@ def req():
         else:
             print('Failed to send token mail to {}'.format(token.mailbox))
 
-    return render_template("/public/requested.html")
+        return render_template("/public/requested.html")
 
-@public.route("/reset", methods=["POST"])
+    else:
+        flash(_l("Invalid request: Please try again."))
+        return render_template("/public/index.html")
+
+
+
+@public.route("/reset", methods=["GET","POST"])
 def reset():
     if 'reset_btn' in request.form and 'tmp_pass' in request.form:
         token_query = Token.query.filter_by(tmp_pass=request.form['tmp_pass']).first()
