@@ -9,4 +9,4 @@ app = create_app_context_only()
 from app.public.views import initial_use_mail
 
 with app.app_context():
-    initial_use_mail(sys.argv[1], sys.argv[2])
+    initial_use_mail(*sys.argv[1:])

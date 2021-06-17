@@ -43,7 +43,10 @@ def index():
             flash(_l("Invalid token: This token does not exist."))
         elif token_query.used:
             flash(_l("Invalid token: This token was already used."))
-        elif now - token_query.requested > datetime.timedelta(seconds=int(os.getenv('TOKEN_SECONDS_VALID'))):
+        elif now - token_query.requested > \
+              (datetime.timedelta(seconds=int(os.getenv('INITIAL_TOKEN_SECONDS_VALID'))) \
+              if token_query.initial_use else \
+              datetime.timedelta(seconds=int(os.getenv('TOKEN_SECONDS_VALID')))):
             flash(_l("Invalid token: This token has expired."))
         else:
             token_query.used = now
