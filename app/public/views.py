@@ -95,7 +95,7 @@ def initial_use_mail(mailbox: str, receiver: str):
 
     send_genuine_mail(
         f='{}@{}'.format(mailbox, os.getenv('MAIL_RECEIVER_DOMAIN')),
-        t=receiver.split(','),
+        t=receiver,
         s='[{}] {}'.format(mailbox, 'Password reset token'),
         p=render_template("mail_initial_use.j2",
             url=url_for('public.index', t=token.token, _external=True),

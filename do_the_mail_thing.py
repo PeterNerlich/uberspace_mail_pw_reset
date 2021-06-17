@@ -36,7 +36,12 @@ def send_token_mail_real(box, f, t, s, p):
         mb.unlock()
 
 
-def send_genuine_mail(f: str, t: list, s: str, p: str, tmp_pass=None):
+def send_genuine_mail(f, t, s, p, tmp_pass=None, genuine=None):
+    import subprocess
+
+    return subprocess.run(["python", "do_the_mail_thing.py", str(f), str(t), str(s), str(p), str(tmp_pass), str(1)]).returncode == 0 #, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+def send_genuine_mail_real(f: str, t: str, s: str, p: str, tmp_pass=None, genuine=None):
     import smtplib, os
     from email.message import Message
 
@@ -50,10 +55,13 @@ def send_genuine_mail(f: str, t: list, s: str, p: str, tmp_pass=None):
         #smtp.set_debuglevel(1)
         smtp.starttls()
         smtp.login(f, tmp_pass)
-        smtp.sendmail(f, t, str(msg))
+        smtp.sendmail(f, t.split(','), str(msg))
         smtp.quit()
 
 
 if __name__ == "__main__":
     import sys
-    send_token_mail_real(*sys.argv[1:])
+    if len(sys.argv) > 6:
+        send_genuine_mail_real(*sys.argv[1:])
+    else:
+        send_token_mail_real(*sys.argv[1:])
