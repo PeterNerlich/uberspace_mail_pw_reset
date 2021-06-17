@@ -84,6 +84,7 @@ body {
 .dialog-box.content {
     padding: 0 50px;
     margin: auto;
+    position: relative;
 
     /*padding-left: 50px;
     padding-right: 50px;*/
