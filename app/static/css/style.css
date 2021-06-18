@@ -287,7 +287,7 @@ p.input-descriptor {
 
 .dialog-box.content input[type=submit], .dialog-box.content .button:not(div) {
     all: unset;
-    width: fit-content;
+    width: max-content;
     padding: 1em;
     font-size: 1.1em;
 
