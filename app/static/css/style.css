@@ -287,11 +287,16 @@ p.input-descriptor {
 
 .dialog-box.content input[type=submit], .dialog-box.content .button:not(div) {
     all: unset;
-    font-size: 17px;
+    width: fit-content;
+    padding: 1em;
+    font-size: 1.1em;
+
+    /*all: unset;
+    font-size: 17px;*/
     text-align: center;
-    /*width: 100px;*/
+    /*width: 100px;
     height: 50px;
-    padding: 0 10px;
+    padding: 0 10px;*/
     background-color: #e6e6e6;
     border: solid 2px #fff;
     color: #575757;
