@@ -1,0 +1,332 @@
+# German translations for PROJECT.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-06-24 14:32+0200\n"
+"PO-Revision-Date: 2021-06-24 06:59+0200\n"
+"Last-Translator: Peter Nerlich <peter.nerlich+dev@googlemail.com>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: app/public/views.py:43 app/public/views.py:116
+msgid "Invalid token: This token does not exist."
+msgstr "Ungültiges Token: Dieses Token existiert nicht."
+
+#: app/public/views.py:45
+msgid "Invalid token: This token was already used."
+msgstr "Ungültiges Token: Dieses Token wurde bereits genutzt."
+
+#: app/public/views.py:50 app/public/views.py:122
+msgid "Invalid token: This token has expired."
+msgstr "Ungültiges Token: Dieses Token ist abgelaufen."
+
+#: app/public/views.py:74
+msgid "Password reset token"
+msgstr "Passwort Reset Token"
+
+#: app/public/views.py:84
+msgid "Invalid request: Please try again."
+msgstr "Ungültige Anfrage: Bitte versuche es erneut."
+
+#: app/public/views.py:118
+msgid "Invalid request: Reset was already used."
+msgstr "Ungültige Anfrage: Rücksetzen wurde bereits genutzt."
+
+#: app/public/views.py:120
+msgid ""
+"Invalid request: Too much time between token usage and actual password "
+"reset."
+msgstr ""
+"Ungültige Anfrage: Zu viel Zeit zwischen Tokennutzung und "
+"Passwortrücksetzung."
+
+#: app/public/views.py:147
+msgid "Invalid request: No token. Please try again."
+msgstr "Ungültige Anfrage: Kein Token. Bitte versuch es erneut."
+
+#: app/templates/public/access.html:7 app/templates/public/access.html:11
+msgid "Accessing your mailbox"
+msgstr "Zugriff auf dein Postfach"
+
+#: app/templates/public/access.html:22
+msgid "Web Interface"
+msgstr "Webinterface"
+
+#: app/templates/public/access.html:23
+msgid ""
+"The easiest way to access your mailbox is via the web interface at "
+"webmail.uberspace.de."
+msgstr ""
+"Die einfachste Möglichkeit, auf das Postfach zuzugreifen, ist über das "
+"Webinterface unter webmail.uberspace.de."
+
+#: app/templates/public/access.html:24
+msgid "Go to webmail.uberspace.de"
+msgstr "Zu webmail.uberspace.de"
+
+#: app/templates/public/access.html:26
+msgid "Login with your email address and password."
+msgstr "Melde dich mit deiner Email-Adresse und deinem Passwort an."
+
+#: app/templates/public/access.html:27
+msgid "If you don't have access and don't know your password, contact an admin."
+msgstr ""
+"Wenn du keinen Zugriff hast und dein Passwort nicht weißt, kontaktiere "
+"einen Admin."
+
+#: app/templates/public/access.html:30
+msgid "Client"
+msgstr "Client"
+
+#: app/templates/public/access.html:31
+msgid "You can also access your mailbox with your local mail program."
+msgstr "Du kannst auch mit deinem lokalen Mailprogramm auf das Postfach zugreifen."
+
+#: app/templates/public/access.html:33
+msgid "IMAP"
+msgstr "IMAP"
+
+#: app/templates/public/access.html:34
+msgid ""
+"IMAP is a mail fetching protocol doesn't delete messages from the server "
+"so you can use multiple devices to check your mailbox, with new messages "
+"staying visible to all devices."
+msgstr ""
+"IMAP ist ein Mail-Abruf-Protokoll, das keine Nachrichten vom Server "
+"löscht, sodass du mit mehreren Geräten dein Postfach überprüfen kannst "
+"und neue Nachrichten für alle Geräte sichtbar bleiben."
+
+#: app/templates/public/access.html:35 app/templates/public/access.html:57
+msgid "In your mail software, ensure these settings for IMAP:"
+msgstr ""
+"Versichere dich, dass die folgenden Werte in deinem Emailprogramm für "
+"IMAP eingestellt sind:"
+
+#: app/templates/public/access.html:37 app/templates/public/access.html:48
+#: app/templates/public/access.html:59
+msgid "Server:"
+msgstr "Server:"
+
+#: app/templates/public/access.html:38 app/templates/public/access.html:49
+#: app/templates/public/access.html:60
+msgid "Port:"
+msgstr "Port:"
+
+#: app/templates/public/access.html:39 app/templates/public/access.html:50
+#: app/templates/public/access.html:61
+msgid "SSL/TLS Encryption:"
+msgstr "SSL/TLS Verschlüsselung"
+
+#: app/templates/public/access.html:39 app/templates/public/access.html:50
+msgid "Enabled, but not STARTTLS"
+msgstr "Aktiviert, aber kein STARTTLS"
+
+#: app/templates/public/access.html:40 app/templates/public/access.html:51
+#: app/templates/public/access.html:62
+msgid "Username:"
+msgstr "Benutzername:"
+
+#: app/templates/public/access.html:40 app/templates/public/access.html:51
+#: app/templates/public/access.html:62
+msgid "Your email address, including the domain"
+msgstr "Deine Emailadresse, einschließlich der Domain"
+
+#: app/templates/public/access.html:41 app/templates/public/access.html:52
+#: app/templates/public/access.html:63
+msgid "Password:"
+msgstr "Passwort:"
+
+#: app/templates/public/access.html:41 app/templates/public/access.html:52
+#: app/templates/public/access.html:63
+msgid "Your password for the email address"
+msgstr "Dein Passwort für die Emailadresse"
+
+#: app/templates/public/access.html:44
+msgid "POP"
+msgstr "POP"
+
+#: app/templates/public/access.html:45
+msgid ""
+"POP is a mail fetching protocol that deletes messages from the server "
+"after downloading. It is recommended to use IMAP instead."
+msgstr ""
+"POP ist ein Mail-Abruf-Protokoll, dass Nachrichten nach dem Herunterladen"
+" vom Server löscht. Es wird empfohlen, stattdessen IMAP zu verwenden."
+
+#: app/templates/public/access.html:46
+msgid "In your mail software, ensure these settings for POP:"
+msgstr ""
+"Versichere dich, dass die folgenden Werte in deinem Emailprogramm für POP"
+" eingestellt sind:"
+
+#: app/templates/public/access.html:55
+msgid "SMTP"
+msgstr "SMTP"
+
+#: app/templates/public/access.html:56
+msgid "SMTP is a mail protocol required for sending mail from your mailbox."
+msgstr ""
+"SMTP ist ein Mail-Protokoll, das zum Senden von Mails aus deinem Postfach"
+" benötigt wird."
+
+#: app/templates/public/access.html:69
+msgid "If you encounter any difficulties, please contact an admin."
+msgstr ""
+"Wenn irgendwelche Schwierigkeiten auftauchen, kontaktiere bitte einen "
+"Admin."
+
+#: app/templates/public/access.html:70
+msgid "Back to resetting your mailbox password"
+msgstr "Zurück zum Zurücksetzen des Postfach-Passworts"
+
+#: app/templates/public/error.html:7 app/templates/public/error.html:11
+msgid "Error resetting password"
+msgstr "Fehler beim Zurücksetzen des Passworts"
+
+#: app/templates/public/error.html:22 app/templates/public/reset.html:23
+msgid "Uh oh!"
+msgstr "Oh oh!"
+
+#: app/templates/public/error.html:23
+msgid ""
+"There was a problem while generating a new password. Please contact an "
+"admin."
+msgstr ""
+"Beim Generieren eines neuen Passworts ist ein Fehler aufgetreten. Bitte "
+"kontaktiere einen Admin."
+
+#: app/templates/public/error.html:24
+msgid "Error message:"
+msgstr "Error Nachricht:"
+
+#: app/templates/public/index.html:7 app/templates/public/index.html:11
+msgid "Request mailbox password reset"
+msgstr "Beantrage ein Zurücksetzen des Postfach-Passworts"
+
+#: app/templates/public/index.html:22
+msgid "Here you can reset the password for a mailbox on this server."
+msgstr ""
+"Hier kannst du das Passwort für ein Postfach auf diesem Server "
+"zurücksetzen."
+
+#: app/templates/public/index.html:24
+msgid "Enter the name, click \"{}\" and a mail will be sent to that mailbox."
+msgstr ""
+"Trage einen Namen ein, drücke auf \"{}\" und es wird eine Mail an dieses "
+"Postfach geschickt werden."
+
+#: app/templates/public/index.html:24 app/templates/public/index.html:44
+msgid "Request reset token"
+msgstr "Beantrage ein Zurücksetzungs-Token"
+
+#: app/templates/public/index.html:25
+msgid "Use the link in that mail to prove that you have access to the mailbox."
+msgstr ""
+"Benutze den Link in der Mail, um zu beweisen, dass zu Zugriff auf das "
+"Postfach hast."
+
+#: app/templates/public/index.html:26
+msgid "On that page, click \"{}\" and a new password will be generated."
+msgstr ""
+"Klicke auf \"{}\" auf dieser Seite und es wird ein neues Passwort "
+"generiert werden."
+
+#: app/templates/public/index.html:26 app/templates/public/reset.html:28
+#: app/templates/public/reset.html:46
+msgid "Reset password"
+msgstr "Passwort zurücksetzen"
+
+#: app/templates/public/index.html:26 app/templates/public/reset.html:29
+msgid "This takes a few seconds, please wait."
+msgstr "Das dauert ein paar Sekunden, bitte warte."
+
+#: app/templates/public/index.html:27
+msgid ""
+"The final page will show you the new password. Please take note of it "
+"immediately, as it will not be shown again."
+msgstr ""
+"Die letzte Seite wird dir das neue Passwort zeigen. Bitte nehme es sofort"
+" zur Kenntnis, es wir nicht erneut angezeigt werden."
+
+#: app/templates/public/index.html:29 app/templates/public/success.html:27
+msgid "How to access your mailbox"
+msgstr "Wie du auf dein Postfach zugreifen kannst"
+
+#: app/templates/public/index.html:30 app/templates/public/requested.html:23
+msgid "If you lost access to your mailbox, contact an admin."
+msgstr ""
+"Wenn du den Zugang zu deinem Postfach verloren hast, kontaktiere einen "
+"Admin."
+
+#: app/templates/public/index.html:37 app/templates/public/reset.html:38
+msgid "Mailbox"
+msgstr "Postfach"
+
+#: app/templates/public/requested.html:7 app/templates/public/requested.html:11
+msgid "Email sent!"
+msgstr "Email gesendet!"
+
+#: app/templates/public/requested.html:22
+msgid ""
+"If that mailbox exists, we have sent a token link to it. Use that to "
+"reset the password."
+msgstr ""
+"Wenn das Postfach existiert, haben wir daran einen Token-Link verschickt."
+" Benutze ihn, um das Passwort zurückzusetzen."
+
+#: app/templates/public/reset.html:7 app/templates/public/reset.html:11
+msgid "Reset mailbox password"
+msgstr "Postfach-Password zurücksetzen"
+
+#: app/templates/public/reset.html:24
+msgid "This didn't work. You can try again and"
+msgstr "Das hat nicht funktioniert. Du kannst es nochmal versuchen und"
+
+#: app/templates/public/reset.html:25
+msgid "Request a new token"
+msgstr "Ein neues Token beantragen"
+
+#: app/templates/public/reset.html:28
+msgid "Click \"{}\" and a new password will be generated."
+msgstr "Klicke \"{}\" und es wird ein neues Passwort generiert."
+
+#: app/templates/public/success.html:7 app/templates/public/success.html:11
+msgid "Password reset!"
+msgstr "Passwort zurückgesetzt!"
+
+#: app/templates/public/success.html:22
+msgid "Success! The mailbox password was reset."
+msgstr "Erfolg! Das Password des Postfachs wurde zurückgesetzt."
+
+#: app/templates/public/success.html:23
+msgid "The new password is:"
+msgstr "Das neue Passwort lautet:"
+
+#: app/templates/public/success.html:25
+msgid ""
+"This is the only time this password will be shown. Please write it down "
+"or save it in your password manager."
+msgstr ""
+"Das ist das einzige Mal, dass das Passwort gezeigt wird. Bitte notiere es"
+" oder hinterlege es in deinem Passwortmanager."
+
+#: app/templates/public/success.html:26
+msgid ""
+"If you loose your password or think others might have gained access to "
+"it, please reset it again. If you loose access to the mailbox completely,"
+" please contact an admin."
+msgstr ""
+"Wenn du dein Passwort verlierst oder glaubst, dass andere dazu Zugang "
+"erhalten haben, setze es bitte erneut zurück. Wenn du den Zugang zum "
+"Postfach ganz verlierst, kontaktiere bitte einen Admin."
+
