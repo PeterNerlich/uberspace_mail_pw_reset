@@ -21,6 +21,8 @@ def create_app():
     app.config['APPLICATION_ROOT'] = os.getenv('APP_ROOT')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
+    app.config['BABEL_DEFAULT_LOCALE'] = os.getenv('DEFAULT_LOCALE')
+    app.config['BABEL_TRANSLATION_DIRECTORIES'] = '../translations'
 
     babel.init_app(app)
 
@@ -43,10 +45,12 @@ def create_app_context_only():
     app.config['APPLICATION_ROOT'] = os.getenv('APP_ROOT')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
+    app.config['BABEL_DEFAULT_LOCALE'] = os.getenv('DEFAULT_LOCALE')
+    app.config['BABEL_TRANSLATION_DIRECTORIES'] = '../translations'
 
     #app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 
-    #babel.init_app(app)
+    babel.init_app(app)
 
     db.init_app(app)
     with app.app_context():

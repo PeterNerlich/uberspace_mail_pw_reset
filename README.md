@@ -9,3 +9,9 @@ Before executing the application or doing any translation work, make sure the tr
 	sh update_translations.sh
 
 Ensure `pybabel` is either in `PATH` or in a venv so we find it in `bin/`
+
+To start translating to a new language, run
+
+	pybabel init -i strings.pot -d translations -l de
+
+and substitute `de` for your language code.

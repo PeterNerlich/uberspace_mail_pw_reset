@@ -101,8 +101,7 @@ def initial_use_mail(mailbox: str, receiver: str):
         t=receiver,
         s='[{}] {}'.format(mailbox, 'Password reset token'),
         p=render_template("mail_initial_use.j2",
-            url=url_for('public.index', t=token.token, _external=True),
-            l=fake_tr),
+            url=url_for('public.index', t=token.token, _external=True)),
         tmp_pass=tmp_pass)
 
 

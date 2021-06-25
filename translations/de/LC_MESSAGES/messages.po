@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-24 14:32+0200\n"
+"POT-Creation-Date: 2021-06-25 15:27+0200\n"
 "PO-Revision-Date: 2021-06-24 06:59+0200\n"
 "Last-Translator: Peter Nerlich <peter.nerlich+dev@googlemail.com>\n"
 "Language: de\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: app/public/views.py:43 app/public/views.py:116
+#: app/public/views.py:43 app/public/views.py:115
 msgid "Invalid token: This token does not exist."
 msgstr "Ungültiges Token: Dieses Token existiert nicht."
 
@@ -26,7 +26,7 @@ msgstr "Ungültiges Token: Dieses Token existiert nicht."
 msgid "Invalid token: This token was already used."
 msgstr "Ungültiges Token: Dieses Token wurde bereits genutzt."
 
-#: app/public/views.py:50 app/public/views.py:122
+#: app/public/views.py:50 app/public/views.py:121
 msgid "Invalid token: This token has expired."
 msgstr "Ungültiges Token: Dieses Token ist abgelaufen."
 
@@ -38,11 +38,11 @@ msgstr "Passwort Reset Token"
 msgid "Invalid request: Please try again."
 msgstr "Ungültige Anfrage: Bitte versuche es erneut."
 
-#: app/public/views.py:118
+#: app/public/views.py:117
 msgid "Invalid request: Reset was already used."
 msgstr "Ungültige Anfrage: Rücksetzen wurde bereits genutzt."
 
-#: app/public/views.py:120
+#: app/public/views.py:119
 msgid ""
 "Invalid request: Too much time between token usage and actual password "
 "reset."
@@ -50,9 +50,55 @@ msgstr ""
 "Ungültige Anfrage: Zu viel Zeit zwischen Tokennutzung und "
 "Passwortrücksetzung."
 
-#: app/public/views.py:147
+#: app/public/views.py:146
 msgid "Invalid request: No token. Please try again."
 msgstr "Ungültige Anfrage: Kein Token. Bitte versuch es erneut."
+
+#: app/templates/mail_initial_use.j2:1 app/templates/mail_reset_token.j2:1
+msgid "Hi there!"
+msgstr "Hallo!"
+
+#: app/templates/mail_initial_use.j2:3
+msgid "Please visit the URL below to generate a secure password for your mailbox:"
+msgstr ""
+"Bitte besuche die folgende URL, um ein sicheres Passwort für dein "
+"Postfach zu generieren:"
+
+#: app/templates/mail_initial_use.j2:9
+msgid "There you also find instructions on how to get access to your mailbox."
+msgstr ""
+"Dort findest du auch eine Anleitung, wie du auf dein Postfach zugreifen "
+"kannst."
+
+#: app/templates/mail_reset_token.j2:3
+msgid ""
+"Someone requested a password reset for this mailbox. If that was you, "
+"please visit the URL below to generate a new password:"
+msgstr ""
+"Jemand hat das Zurücksetzen des Passworts für dieses Postfach beantragt. "
+"Wenn du das warst, besuche bitte die folgende URL, um ein neues Passwort "
+"zu generieren:"
+
+#: app/templates/mail_reset_token.j2:9
+msgid ""
+"If this WASN'T you, no need to panic - as long as they don't already have"
+" access to this mailbox, others won't be able to do anything."
+msgstr ""
+"Wenn du das NICHT warst, keine Sorge - solange sie nicht bereits Zugang "
+"zu diesem Postfach haben, können andere nichts ausrichten."
+
+#: app/templates/mail_reset_token.j2:11
+msgid ""
+"This might be a good time though to check whether you still have the "
+"password safe. If you lost it or think someone might have access to it, "
+"better generate a new password now. And if you loose access to the "
+"mailbox somehow, you can always contact an admin."
+msgstr ""
+"Das könnte aber ein guter Zeitpunkt sein, um zu überprüfen, ob du das "
+"Passwort noch sicher hast. Wenn du es verloren hast oder denkst, jemand "
+"anderes könnte Zugang dazu haben, generiere lieber jetzt ein neues. Und "
+"wenn du irgendwie den Zugang zum Postfach verlierst, kannst du immer "
+"einen Admin kontaktieren."
 
 #: app/templates/public/access.html:7 app/templates/public/access.html:11
 msgid "Accessing your mailbox"

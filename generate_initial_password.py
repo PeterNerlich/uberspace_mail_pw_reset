@@ -8,5 +8,5 @@ app = create_app_context_only()
 
 from app.public.views import initial_use_mail
 
-with app.app_context():
+with app.test_request_context('/'):
     initial_use_mail(*sys.argv[1:])

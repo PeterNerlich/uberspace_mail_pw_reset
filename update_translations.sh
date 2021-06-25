@@ -1,5 +1,6 @@
-
 #!/bin/bash
+
+SCRIPT_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
 CDIR=$(git rev-parse --show-toplevel)
 
@@ -9,8 +10,7 @@ else
   BABEL="$CDIR/bin/pybabel"
 fi
 
-cd "$CDIR"
 "$BABEL" extract -F babel.cfg -k 'lazy_gettext _l' -o strings.pot .
-"$BABEL" update -i strings.pot -d po
+"$BABEL" update -i strings.pot -d translations
 
-"$BABEL" compile -d po
+"$BABEL" compile -d translations
