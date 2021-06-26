@@ -6,7 +6,7 @@ A small flask project to securely allow resetting passwords of uberspace mailbox
 
 Before executing the application or doing any translation work, make sure the translation files are up to date:
 
-	sh update_translations.sh
+	sh update_and_build_translations.sh
 
 Ensure `pybabel` is either in `PATH` or in a venv so we find it in `bin/`
 
