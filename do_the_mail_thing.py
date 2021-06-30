@@ -5,7 +5,14 @@ def send_token_mail(box, f, t, s, p):
     return subprocess.run(["python", "do_the_mail_thing.py", str(box), str(f), str(t), str(s), str(p)]).returncode == 0 #, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 def send_token_mail_real(box, f, t, s, p):
+    from email.message import EmailMessage
     import mailbox
+
+    msg = EmailMessage()
+    msg['From'] = f
+    msg['To'] = t
+    msg['Subject'] = s
+    msg.set_content(p)
 
     try:
         mb = mailbox.Maildir("~/users/{}".format(box), create=False)
@@ -16,14 +23,10 @@ def send_token_mail_real(box, f, t, s, p):
     mb.lock()
 
     try:
-        msg = mailbox.MaildirMessage()
+        msg = mailbox.MaildirMessage(msg)
         #msg.set_subdir('new')
         #msg.set_date(time.time())
         msg.add_flag('F')   # mark as important
-        msg['From'] = f
-        msg['To'] = t
-        msg['Subject'] = s
-        msg.set_payload(p)
 
         mb.add(msg)
         mb.flush()
@@ -43,16 +46,15 @@ def send_genuine_mail(f, t, s, p, tmp_pass=None, genuine=None):
 
 def send_genuine_mail_real(f: str, t: str, s: str, p: str, tmp_pass=None, genuine=None):
     import smtplib, os
-    from email.message import Message
+    from email.message import EmailMessage
 
-    msg = Message()
+    msg = EmailMessage()
     msg['From'] = f
     msg['To'] = t
     msg['Subject'] = s
-    msg.set_payload(p)
+    msg.set_content(p)
 
     with smtplib.SMTP(host='localhost', port=587) as smtp:
-        #smtp.set_debuglevel(1)
         smtp.starttls()
         smtp.login(f, tmp_pass)
         smtp.sendmail(f, t.split(','), str(msg))
